@@ -49,7 +49,9 @@ async def maintenance(ctx: disnake.ApplicationCommandInteraction, msg: str = Non
     chan = await guild.create_text_channel("soon")
     new_msg = await chan.send(f"{msg}\n@everyone")
     await new_msg.pin()
-    await ctx.chan.purge(limit=1)
+    await chan.purge(limit=1)
+
+    await ctx.send("Server maintenance has been created.", delete_after=3)
 
 @bot.slash_command(
     name="unmaintenance",
