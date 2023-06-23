@@ -22,7 +22,7 @@ guild_id = config["GUILD_ID"]
 you = config["YOU_ID"]
 bot = commands.Bot(command_prefix="!", intents=disnake.Intents.all())
 
-@bot.event
+@bot.event()
 async def on_ready():
     print("I am ready")
     print(f"Logged on {bot.user.name}")
