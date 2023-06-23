@@ -46,5 +46,9 @@ async def maintenance(ctx: disnake.ApplicationCommandInteraction, msg: None):
             await channels.set_permissions(guild.default_role, read_messages=False)
             print(f"The channel {channel.name} a ete bloquer avec succes")
 
+    chan = await guild.create_text_channel("soon")
+    new_msg = await chan.send(msg)
+    await new_msg.pin()
+
 
 bot.run(token)
