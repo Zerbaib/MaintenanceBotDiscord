@@ -51,4 +51,27 @@ async def maintenance(ctx: disnake.ApplicationCommandInteraction, msg: str = Non
     await new_msg.pin()
     await ctx.chan.purge(limit=1)
 
+@bot.slash_command(
+    name="unmaintenance",
+    description="Remove the server maintenance"
+)
+async def unmaintenance(ctx: disnake.ApplicationCommandInteraction):
+    if ctx.author.id != you:
+        await ctx.send("You can't do that", delete_after=3)
+        return
+
+    guild = bot.get_guild(guild_id)
+    channels = guild.channels
+    for channel in channels:
+        if isinstance(channel, disnake.TextChannel) or isinstance(channel, disnake.VoiceChannel):
+            await channel.set_permissions(guild.default_role, read_messages=True)
+            print(f"The channel {channel.name} has been unblocked successfully")
+
+    soon_channel = disnake.utils.get(guild.channels, name="soon")
+    if soon_channel:
+        await soon_channel.delete()
+        print("The 'soon' channel has been deleted")
+
+    await ctx.send("Server maintenance has been removed.", delete_after=3)
+
 bot.run(token)
