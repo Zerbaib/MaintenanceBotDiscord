@@ -28,7 +28,7 @@ async def on_ready():
     print(f"Logged on {bot.user.name}")
 
 @bot.slash_command(
-    name="maintenance"
+    name="maintenance",
     description="Set the server in maintenance"
 )
 async def maintenance(ctx: disnake.ApplicationCommandInteraction, msg: None):
