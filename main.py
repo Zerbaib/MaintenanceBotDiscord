@@ -47,8 +47,7 @@ async def maintenance(ctx: disnake.ApplicationCommandInteraction, msg: None):
             print(f"The channel {channel.name} a ete bloquer avec succes")
 
     chan = await guild.create_text_channel("soon")
-    new_msg = await chan.send(msg)
+    new_msg = await chan.send(f"{msg}\n@everyone")
     await new_msg.pin()
-
 
 bot.run(token)
